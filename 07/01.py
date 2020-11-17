@@ -1,4 +1,5 @@
 # 편미분(partial Diffirentiation)
+# x0 = 3, x1 = 4
 
 def f(x0):
     return x0**2 + 4**2
