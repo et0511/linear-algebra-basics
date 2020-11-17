@@ -24,4 +24,4 @@ splt.axhline(y=0, color='r')
 splt.set_xticks([])
 splt.set_yticks([])
 
-plt.show();
+plt.show()
