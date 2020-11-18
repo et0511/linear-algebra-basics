@@ -4,6 +4,7 @@ import numpy as np
 def f(x):
     return np.sum(x**2, axis=0)     # 손실 함수
 
+
 # 수치미분으로 기울기 구하기
 def numerical_gradient(f, x):
     h = 1e-4
@@ -31,10 +32,46 @@ def numerical_gradient(f, x):
     return gradient
 
 
+# 수치미분으로 기울기 구하기
+def numerical_gradient_training(f, x, data_training):
+    h = 1e-4
+    gradient = np.zeros_like(x)
+
+    # h1 = f(np.array([x[0] + h, x[1]]))
+    # h2 = f(np.array([x[0] - h, x[1]]))
+    # gradient[0] = (h1 - h2) / (2 * h)
+
+    # h1 = f(np.array([x[0], x[1] + h]))
+    # h2 = f(np.array([x[0], x[1] - h]))
+    # gradient[1] = (h1 - h2) / (2 * h)
+    for i in range(x.size):
+        tmp = x[i]
+
+        x[i] = tmp + h
+        h1 = f(x, *data_training)
+        x[i] = tmp - h
+        h2 = f(x, *data_training)
+        gradient[i] = (h1 - h2) / (2 * h)
+
+        x[i] = tmp
+
+    return gradient
+
+
 # 경사하강법 구현1
 def gradient_descent(f, x, lr=0.01, epoch=100):
     for i in range(epoch):
         gradient = numerical_gradient(f, x)
+        # 출력
+        print(f'epoch={i+1}, gradient={gradient}, x={x}')
+        x -= lr * gradient
+
+    return x
+
+# 경사하강법 구현2 - 선형회귀
+def gradient_descent_linear_regression(f, x, lr=0.01, epoch=100, data_training=None):
+    for i in range(epoch):
+        gradient = numerical_gradient_training(f, x, data_training)
         # 출력
         print(f'epoch={i+1}, gradient={gradient}, x={x}')
         x -= lr * gradient
@@ -75,12 +112,11 @@ def mean_squares_error(x, data_x, data_y):
     # s = 0
     # for i in range(data_x):
     #     data_y_hat = x[0] * data_x[i] * x[1]
-    #     s += sum((data_y_hat - data_y[i]) ** 2)
+    #     s += ((data_y_hat - data_y[i]) ** 2)
     # e = s / len(data_x)
 
     data_y_hat = [x[0] * dx + x[1] for dx in data_x]
     # return np.mean([(dyh - dy)**2 for dyh, dy in zip(data_y_hat, data_y)])
-
     e = np.mean([(dyh - dy)**2 for dyh, dy in zip(data_y_hat, data_y)])
 
-     return e
+    return e
