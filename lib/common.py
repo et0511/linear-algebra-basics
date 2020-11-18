@@ -4,6 +4,7 @@ import numpy as np
 def f(x):
     return np.sum(x**2, axis=0)     # 손실 함수
 
+# 수치미분으로 기울기 구하기
 def numerical_gradient(f, x):
     h = 1e-4
     gradient = np.zeros_like(x)
@@ -29,11 +30,41 @@ def numerical_gradient(f, x):
 
     return gradient
 
-# 함수 테스트
-# print(f(np.array([3., 4.])))
 
-gra1 = numerical_gradient(f, np.array([3, 4.]))
-gra2 = numerical_gradient(f, np.array([-1, -1.5]))
-gra3 = numerical_gradient(f, np.array([-0.25, -0.25]))
+# 경사하강법 구현1
+def gradient_descent(f, x, lr=0.01, epoch=100):
+    for i in range(epoch):
+        gradient = numerical_gradient(f, x)
+        # 출력
+        print(f'epoch={i+1}, gradient={gradient}, x={x}')
+        x -= lr * gradient
 
-print(gra1, gra2, gra3)
+    return x
+
+# 최소제곱법(Method of Least Squares)
+# 여러 점에서 직선의 기울기 구하기
+def method_least_squares(x, y):
+    mx = sum(x) / len(x)
+    my = sum(y) / len(y)
+
+    # s1 = 0
+    # for i in range(len(x)):
+    #     s2 += (x[i] - mx) * (y[i] - my)
+
+    s1 = 0
+    for i in range(len(x)):
+        s1 += (x[i] - mx) * (y[i] - my)
+    print(s1)
+
+    s2 = 0
+    for i in range(len(x)):
+        s2 += (x[i] - mx)**2
+    print(s2)
+
+    s1 = sum([(i - mx) * (j - my) for i, j in zip(x, y)])
+    s2 = sum([(i - mx)**2 for i in x])
+
+    mls_a = s1 / s2
+    mls_b = my - (mx * mls_a)
+
+    return mls_a, mls_b
