@@ -2,7 +2,7 @@
 import numpy as np
 
 def f(x):
-    return np.sum(x**2, axis=0)
+    return np.sum(x**2, axis=0)     # 손실 함수
 
 def numerical_gradient(f, x):
     h = 1e-4
@@ -33,7 +33,7 @@ def numerical_gradient(f, x):
 # print(f(np.array([3., 4.])))
 
 gra1 = numerical_gradient(f, np.array([3, 4.]))
-gra2 = numerical_gradient(f, np.array([0, 2.]))
-gra3 = numerical_gradient(f, np.array([3, 0.]))
+gra2 = numerical_gradient(f, np.array([-1, -1.5]))
+gra3 = numerical_gradient(f, np.array([-0.25, -0.25]))
 
 print(gra1, gra2, gra3)
