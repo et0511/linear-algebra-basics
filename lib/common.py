@@ -41,7 +41,7 @@ def gradient_descent(f, x, lr=0.01, epoch=100):
 
     return x
 
-# 최소제곱법(Method of Least Squares)
+# 최소제곱법(Method of Least Squres)
 # 여러 점에서 직선의 기울기 구하기
 def method_least_squares(x, y):
     mx = sum(x) / len(x)
@@ -68,3 +68,19 @@ def method_least_squares(x, y):
     mls_b = my - (mx * mls_a)
 
     return mls_a, mls_b
+
+# 평균제곱오차(MSE, Mean Squares Error)
+def mean_squares_error(x, data_x, data_y):
+
+    # s = 0
+    # for i in range(data_x):
+    #     data_y_hat = x[0] * data_x[i] * x[1]
+    #     s += sum((data_y_hat - data_y[i]) ** 2)
+    # e = s / len(data_x)
+
+    data_y_hat = [x[0] * dx + x[1] for dx in data_x]
+    # return np.mean([(dyh - dy)**2 for dyh, dy in zip(data_y_hat, data_y)])
+
+    e = np.mean([(dyh - dy)**2 for dyh, dy in zip(data_y_hat, data_y)])
+
+     return e

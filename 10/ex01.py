@@ -13,7 +13,7 @@ from matplotlib import pyplot as plt
 times = [2, 4, 6, 8]
 scores = [81, 93, 91, 97]
 
-a, b = mls(times, scores)
+a, b = method_least_squares(times, scores)
 print(f'직선 y = {a}x + {b}')
 
 # predict
