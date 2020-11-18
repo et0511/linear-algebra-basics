@@ -5,7 +5,7 @@ def f(x0):
     return x0**2 + 4**2
 
 def numerical_diff(f, x0):
-    h = 1.0e-4
+    h = 1.0e-4      # 개인 지정
     return (f(x0 + h) - f(x0)) / h
 
 def analytic_diff(x0):
