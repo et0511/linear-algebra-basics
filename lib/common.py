@@ -53,6 +53,8 @@ def numerical_partial_diff(f, x):
 # 기울기 구하기 = 수치편미분
 numerical_gradient =numerical_partial_diff
 
+
+
 # 수치미분으로 기울기 구하기
 def numerical_gradient_training(f, x, data_training):
     h = 1e-4
