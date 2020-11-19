@@ -1,8 +1,10 @@
 # 기울기(gradient)
 import numpy as np
 
-def f(x):
-    return np.sum(x**2, axis=0)     # 손실 함수
+# 수치미분
+def numerical_diff(f, x):
+    h = 1e-4
+    return (f(x+h) - f(x-h)) / (2 * h)
 
 
 # 수치미분으로 기울기 구하기
