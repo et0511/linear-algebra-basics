@@ -1,7 +1,7 @@
 # 편미분(partial Diffirentiation): x0를 3으로 고정해서 설명
 # x0 = 3, x1 = 4
 
-def f(x1):
+def f(x1):                  # 강사는 이 함수만 실행
     return 3.**2 + x1**2
 
 def numerical_diff(f, x1):

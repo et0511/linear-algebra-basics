@@ -29,7 +29,7 @@ def numerical_partial_diff(f, x):
     pass
     """
     return 변수 x(벡터, 1차원 numpy array)에 대한 편미분 결과 반환(벡터, 1차원 numpy array)
-    : param f: 손실함수
+    : param f : 손실함수
     : param x : 변수(벡터, 1차원 numpy array)
     """
 
