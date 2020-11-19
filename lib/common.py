@@ -50,8 +50,21 @@ def numerical_partial_diff(f, x):
 
     return dx
 
-# 기울기 구하기 = 수치편미분
+# 기울기 = 수치편미분
 numerical_gradient =numerical_partial_diff
+
+
+
+
+# 경사하강 구현:  no training data
+def gradient_descent(f, x, lr=0.01, epoch=100):
+    for i in range(epoch):
+        gradient = numerical_gradient(f, x)
+        # 출력
+        print(f'epoch={i+1}, gradient={gradient}, x={x}')
+        x -= lr * gradient
+
+    return x
 
 
 
@@ -72,7 +85,6 @@ def numerical_gradient_training(f, x, data_training):
 
         x[i] = tmp + h
         h1 = f(x)
-
         x[i] = tmp - h
         h2 = f(x)
 
