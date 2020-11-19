@@ -63,12 +63,25 @@ numerical_gradient = numerical_partial_diff
 # 경사하강법
 def gradient_descent(f, x, lr=0.01, epoch=100, data_training=None):
     for i in range(epoch):
-        gradient = numerical_gradient(f, x)
+        gradient = numerical_gradient(f, x, data_training)
         # 출력
         print(f'epoch={i+1}, gradient={gradient}, x={x}')
         x -= lr * gradient
 
     return x
+
+
+# 평균제곱오차(MSE, Mean Squares Error)
+def mean_squares_error(x, data_training):
+    data_x, data_y = data_training
+
+    s = 0
+    for i in range(len(data_x)):
+        data_y_hat = x[0] * data_x[i] + x[1]
+        s += ((data_y_hat - data_y[i]) ** 2)
+    e = s / len(data_x)
+
+    return e
 
 
 # 최소제곱법(Method of Least Squares)
@@ -97,17 +110,3 @@ def method_least_squares(x, y):
 
 
 
-# 평균제곱오차(MSE, Mean Squares Error)
-def mean_squares_error(x, data_x, data_y):
-
-    # s = 0
-    # for i in range(data_x):
-    #     data_y_hat = x[0] * data_x[i] * x[1]
-    #     s += ((data_y_hat - data_y[i]) ** 2)
-    # e = s / len(data_x)
-
-    data_y_hat = [x[0] * dx + x[1] for dx in data_x]
-    # return np.mean([(dyh - dy)**2 for dyh, dy in zip(data_y_hat, data_y)])
-    e = np.mean([(dyh - dy)**2 for dyh, dy in zip(data_y_hat, data_y)])
-
-    return e

@@ -1,4 +1,4 @@
-# 평균제곡오차 테스트
+# 평균제곱오차 테스트
 import os
 import sys
 from pathlib import Path
@@ -16,6 +16,4 @@ scores = [81, 93, 91, 97]
 a, b = method_least_squares(times, scores)
 print(f'직선 y = {a}x + {b}')
 
-print(f'오차(평균제곱오차):{mean_squares_error(np.array([a, b]), times, scores)}')
-
-
+print(f'오차(평균제곱오차):{mean_squares_error(np.array([a, b]), (times, scores))}')
