@@ -3,11 +3,9 @@ import os
 import sys
 from pathlib import Path
 import numpy as np
-
 try:
     sys.path.append(os.path.join(Path(os.getcwd()).parent, 'lib'))
     from common import numerical_gradient
-
 except ImportError:
     print('Library Module Can Not Found')
 

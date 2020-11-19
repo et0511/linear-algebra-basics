@@ -1,3 +1,4 @@
+# 경사하강법
 import os
 import sys
 from pathlib import Path
@@ -11,6 +12,7 @@ except ImportError:
 
 def f(x):
     return np.sum(x**2, axis=0)
+
 
 gradient_descent(f, np.array([-3., 4.]), lr=0.1)
 # gradient_descent(f, np.array([-3., 4.]), lr=10)
