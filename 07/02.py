@@ -1,4 +1,4 @@
-# 편미분(partial Diffirentiation)
+# 편미분(partial Diffirentiation): x0를 3으로 고정해서 설명
 # x0 = 3, x1 = 4
 
 def f(x1):
