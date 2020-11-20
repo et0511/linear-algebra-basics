@@ -20,17 +20,16 @@ times = [2, 4, 6, 8]
 ptimes = [0, 4, 2, 3]
 scores = [81, 93, 91, 97]
 
-for i in range(3000):
-    gradient = analytic_gradient(np.array(x, data_training=(np.array([times]), np.array([ptimes]), np.array([scores])))
-
-
+# 경사 하강법
+x = np.array([0., 0., 0.])
+for i in range(5000):
+    gradient = analytic_gradient(x, data_training=(np.array(times), np.array(ptimes), np.array(scores)))
     # 출력
     print(f'epoch={i+1}, gradient={gradient}, x={x}')
-    # 경사 하강법
     x -= 0.01 * gradient
 
 # predict(inference)
 x1_p = 4
 x2_p = 0
 y_p = x[0] * x1_p + x[1] * x2_p + x[2]
-print(f'공부를 {x1_p}시간 하고 과외를 {x2_p}시간 받았을  때, 받을 수 있는 점수는 {y_p}점')
+print(f'공부를 {x1_p}시간 하고 과외를 {x2_p}시간 받았을 때, 받을 수 있는 점수는 {y_p}점 입니다.')
